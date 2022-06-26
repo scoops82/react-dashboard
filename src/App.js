@@ -1,7 +1,7 @@
 import "./App.css";
 import TaskList from "./components/TaskList";
 // import Weather from "./components/Weather.jsx";
-// import Joke from "./components/Joke.jsx";
+import Joke from "./components/Joke.jsx";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <main>
         <TaskList />
         {/* <Weather />*/}
-        {/* <Joke />*/}
+        <Joke />
         {/* Clock maybe timezone form? */}
         {/* Top News */}
       </main>
