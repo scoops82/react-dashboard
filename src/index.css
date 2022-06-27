@@ -31,3 +31,13 @@ ul li {
   align-items: center;
   margin: 1rem 0;
 }
+
+#weather-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.weather-item {
+  display: flex;
+  flex-direction: column;
+}

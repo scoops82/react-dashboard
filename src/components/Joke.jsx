@@ -13,7 +13,7 @@ function Joke() {
   useEffect(() => {
     const fetchData = async () => {
       setFetchState({ ...fetchState, loading: true });
-      console.log(fetchState);
+      //   console.log(fetchState);
 
       try {
         const response = await fetch(API_ENDPOINT);
