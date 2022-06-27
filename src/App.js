@@ -2,15 +2,16 @@ import "./App.css";
 import TaskList from "./components/TaskList";
 import Weather from "./components/Weather.jsx";
 import Joke from "./components/Joke.jsx";
+import News from "./components/News.jsx";
 
 import React, { useState, useEffect } from "react";
 
 function App() {
   const [userLocation, setUserLocation] = useState({
-    // latitude: "51.50793633645921",
-    // longitude: "-0.12802020070910147",
-    // city: "London",
-    // country: "GB",
+    latitude: "51.50793633645921",
+    longitude: "-0.12802020070910147",
+    city: "London",
+    country: "GB",
   });
 
   const weatherApiKey = "c5109d713d696aa0e1a0487c0f213040";
@@ -22,7 +23,7 @@ function App() {
         latitude: lat,
         longitude: lon,
         city: dataObj[0].name,
-        country: dataObj[0].country,
+        country: dataObj[0].country.toLowerCase(),
       });
       console.log("userLocation", userLocation);
     };
@@ -71,12 +72,12 @@ function App() {
         <h1>Morning Dashboard</h1>
       </header>
       <main>
-        <TaskList />
-        <Joke />
+        <div class="desktop-row">
+          <TaskList />
+          <News userLocation={userLocation} />
+          <Joke />
+        </div>
         <Weather userLocation={userLocation} weatherApiKey={weatherApiKey} />
-
-        {/* Clock maybe timezone form? */}
-        {/* Top News */}
       </main>
     </div>
   );

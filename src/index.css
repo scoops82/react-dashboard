@@ -12,6 +12,20 @@ code {
     monospace;
 }
 
+.desktop-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.task-list li {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+  max-height: 2em;
+}
+
 #incomplete-task-list li::before {
   content: "📥";
 }
@@ -24,12 +38,34 @@ li form {
   margin: 2rem 0 3rem;
 }
 
-ul li {
+#news-area ul {
   display: flex;
-  gap: 1rem;
-  max-height: 1em;
+  flex-direction: column;
+  /* gap: 10px; */
+  list-style: none;
+  justify-content: center;
   align-items: center;
-  margin: 1rem 0;
+  padding-right: 40px;
+}
+
+#news-area li {
+  max-width: min-content;
+}
+
+#news-area img {
+  max-width: 300px;
+}
+
+#weather-list ul li {
+  /* display: flex; */
+  /* gap: 1rem; */
+  /* max-height: 1em; */
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
 }
 
 #weather-list {
@@ -40,4 +76,8 @@ ul li {
 .weather-item {
   display: flex;
   flex-direction: column;
+}
+
+.weather-item img {
+  max-height: 100px;
 }

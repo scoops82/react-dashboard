@@ -51,7 +51,7 @@ function TaskList() {
         />
         <button type="submit">+</button>
       </form>
-      <ul id="incomplete-task-list" style={{}}>
+      <ul id="incomplete-task-list" class="task-list">
         {taskList.map((task, i) => (
           <li key={i}>
             <p>{task}</p>
@@ -62,7 +62,7 @@ function TaskList() {
           </li>
         ))}
       </ul>
-      <ul id="completed-task-list">
+      <ul id="completed-task-list" class="task-list">
         {completedTaskList.map((task, i) => (
           <li key={i}>
             <p style={completedTaskStyles}>{task}</p>

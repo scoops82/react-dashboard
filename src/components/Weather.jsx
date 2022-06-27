@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 function Weather({ userLocation, weatherApiKey }) {
-  //   const [weatherCallStatus, setWeatherCallStatus] = useState({
-  //     loading: false,
-  //     error: null,
-  //   });
+  const [weatherCallStatus, setWeatherCallStatus] = useState({
+    loading: false,
+    error: null,
+  });
 
   const [weatherData, setWeatherData] = useState([]);
 
@@ -26,7 +26,7 @@ function Weather({ userLocation, weatherApiKey }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      //   setWeatherCallStatus({ ...weatherCallStatus, loading: true });
+      setWeatherCallStatus({ ...weatherCallStatus, loading: true });
 
       try {
         const response = await fetch(API_ENDPOINT);
@@ -41,19 +41,14 @@ function Weather({ userLocation, weatherApiKey }) {
         formatWeatherData(data);
       } catch (err) {
         console.log("error in fetchData: ", err);
-        // setWeatherCallStatus({ ...weatherCallStatus, error: err });
+        setWeatherCallStatus({ ...weatherCallStatus, error: err });
         // console.log(weatherCallStatus.error);
       }
-      //   setWeatherCallStatus({ ...weatherCallStatus, loading: false });
+      setWeatherCallStatus({ ...weatherCallStatus, loading: false });
     };
 
     fetchData();
   }, [API_ENDPOINT]);
-
-  //   const extract24HrData = (weatherDataResponse) => {
-  //     const weatherArr = weatherDataResponse["list"];
-  //     setWeatherData(weatherArr);
-  //   };
 
   const formatWeatherData = (weatherDataResponse) => {
     const weatherArr = weatherDataResponse["list"];
@@ -79,9 +74,21 @@ function Weather({ userLocation, weatherApiKey }) {
     setWeatherData(weatherForcast);
   };
 
+  if (weatherData.length === 0) {
+    return (
+      <div id="weather-area">
+        <h2>Weather Forcast</h2>
+        <p>Loading weather data...</p>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h2>Weather Forcast for {userLocation.city}</h2>
+    <div id="weather-area">
+      <h2>
+        Weather Forcast for{" "}
+        {userLocation.city ? userLocation.city : "(loading location data...)"}
+      </h2>
       <ul id="weather-list">
         {weatherData.map((rangeData, i) => (
           <li className="weather-item" key={i}>

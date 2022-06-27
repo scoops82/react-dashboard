@@ -10,6 +10,8 @@ function Joke() {
   });
   const [joke, setJoke] = useState([]);
 
+  const [jokeCounter, setJokeCounter] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       setFetchState({ ...fetchState, loading: true });
@@ -34,13 +36,17 @@ function Joke() {
     };
 
     fetchData();
-  }, []);
+  }, [jokeCounter]);
 
   const formatJoke = (data) => {
     if (data.type === "single") {
       const oneLiner = data.joke;
-      console.log("one-liner", data.joke);
-      setJoke([oneLiner]);
+      if (oneLiner.includes("\n")) {
+        const lines = oneLiner.split("\n");
+        setJoke(lines);
+      } else {
+        setJoke([oneLiner]);
+      }
     } else if (data.type === "twopart") {
       const twoParter = [data.setup, data.delivery];
       console.log("two parter:", [data.setup, data.delivery]);
@@ -60,6 +66,7 @@ function Joke() {
       {joke.map((line, i) => (
         <p key={i}>{line}</p>
       ))}
+      <button onClick={() => setJokeCounter(jokeCounter + 1)}>New Joke</button>
     </div>
   );
 }
